@@ -29,67 +29,69 @@ def ensure_list(value: Any, fallback: List[Any]) -> List[Any]:
 
 def main():
     data = load_data()
+    # Try to load previous assignments from result.json to use as constraints
+    previous_assignments = load_data("result.json") or {}
 
-    default_rooms = ["1", "2", "3", "4", "5"]
-    default_students = [
-        "Aashish markam", "Deepankar", "Neeraj", "Lekesh", "Vivek", "Dilip sori",
-        "Sudeshswor", "Goverdhan", "Balkrishna", "Bhagat", "Imran", "Mohan",
-        "Rahul", "Sagar bhaskar", "Harshit", "Vinod", "Sabindar", "Dev Aashish",
-        "Laxman", "Mahadev", "Sagar Kumar", "Umesh", "Manoj mandavi", "Gango",
-        "Sushil", "Ashok", "Badal", "Aashish Kashyap", "Karthik kaka", "Deepak Thakur",
-        "Narendra", "Geetesh", "Parveen", "Harsh borla", "Bheemsen", "Dhurwa",
-        "Himanshu", "Ramlal", "Sukhlal", "Vikash", "Vikky", "Yash"
-    ]
+    # Provided hardcoded initial assignments (used only if result.json is missing)
+    default_previous = {
+        "1": ["Aashish markam", "Rahul", "Sagar Kumar", "Mohan", "Laxman", "Sagar bhaskar"],
+        "2": ["sanath ram", "Lekesh", "Deepankar", "Narendra", "Deepak", "Geetesh", "Devashish"],
+        "3": ["Vikky", "Balkrishna", "Sushil", "Yash", "Bheemsen"],
+        "4": ["Ashok", "Himanshu", "Vivek", "Ramlal"],
+        "5": ["Dilip", "RoopSingh", "Sukhlal", "Sudeshwar", "Kartik kaka"]
+    }
 
-    # Handle flexible data.json structure
-    if isinstance(data, dict):
-        rooms = ensure_list(data.get("rooms") or data.get("room") or data.get("Rooms"), default_rooms)
-        students = ensure_list(
-            data.get("students") or data.get("Students") or data.get("students_list"),
-            default_students,
-        )
-    elif isinstance(data, list):
-        rooms = default_rooms
-        students = data
-    else:
-        rooms = default_rooms
-        students = default_students
+    # Use result.json if it exists, otherwise use the default provided list
+    constraints = previous_assignments if previous_assignments else default_previous
 
-    if not rooms:
-        rooms = default_rooms
-    if not students:
-        students = default_students
+    # Flatten the list of students for shuffling
+    students = []
+    for room_students in constraints.values():
+        students.extend(room_students)
 
-    # Shuffle both rooms and students
-    random.shuffle(rooms)
-    random.shuffle(students)
+    rooms = ["1", "2", "3", "4", "5"]
 
-    # Initialize room assignments
-    room_assignments: Dict[str, List[str]] = {str(r): [] for r in rooms}
+    # Shuffle until no student is in their original room
+    max_attempts = 1000
+    for attempt in range(max_attempts):
+        random.shuffle(students)
+        temp_assignments = {str(r): [] for r in rooms}
+        
+        # Calculate distribution
+        total_students = len(students)
+        total_rooms = len(rooms)
+        base_count = total_students // total_rooms
+        extra = total_students % total_rooms
 
-    # Calculate base distribution
-    total_students = len(students)
-    total_rooms = len(rooms)
-    base_count = total_students // total_rooms
-    extra = total_students % total_rooms
-
-    # Assign students evenly, ensuring no room has > 10 students
-    index = 0
-    for i, room in enumerate(rooms):
-        count = base_count + (1 if i < extra else 0)
-        count = min(count, 10)
-        room_assignments[str(room)] = students[index:index + count]
-        index += count
-
-    # If some students remain unassigned due to 10-student limit, assign randomly within limit
-    remaining = students[index:]
-    for student in remaining:
-        available_rooms = [r for r, s in room_assignments.items() if len(s) < 10]
-        if not available_rooms:
-            print("⚠️ All rooms full (10 max). Some students unassigned.")
+        index = 0
+        valid_shuffle = True
+        for i, room in enumerate(rooms):
+            count = base_count + (1 if i < extra else 0)
+            assigned_to_room = students[index:index + count]
+            
+            # Constraint: No student should be in the same room as in 'constraints' (result.json)
+            original_room_students = constraints.get(str(room), [])
+            if any(s in original_room_students for s in assigned_to_room):
+                valid_shuffle = False
+                break
+                
+            temp_assignments[str(room)] = assigned_to_room
+            index += count
+        
+        if valid_shuffle:
+            room_assignments = temp_assignments
+            print(f"✅ Successful shuffle found on attempt {attempt + 1}")
             break
-        random_room = random.choice(available_rooms)
-        room_assignments[random_room].append(student)
+    else:
+        print("⚠️ Could not find a valid shuffle after 1000 attempts. Assigning randomly.")
+        # Fallback to standard shuffle if constraint can't be met
+        random.shuffle(students)
+        room_assignments = {str(r): [] for r in rooms}
+        index = 0
+        for i, room in enumerate(rooms):
+            count = base_count + (1 if i < extra else 0)
+            room_assignments[str(room)] = students[index:index + count]
+            index += count
 
     # Save to result.json
     try:

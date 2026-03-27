@@ -40,17 +40,13 @@ def main():
     default_students = [
         "Aanchal sahu","Akanksha Dewangan","Anjali Morla","Indu nayak","Anju sori","Ankita nag",
         "Asha jagat","Asmati Markam","Avantika Lambadi","Damini Kunjam","Deepa Sodi","Divya nag",
-        "Divya sunarkar","Gungun Goswami","Prerna Atami","Juhi Kumari Singh","Jyoti Karmkar",
-        "Kamini Sethiya","Kasak raut","Keleshwari watti","Roochi Patel","Khushbu Das","Komal baghel",
-        "Lachhan Rana","Bharti vishwakarama","Diksha sahu","Lata tati","Lunisha Thakur","Ashvini kukdap",
-        "Neetu kuldeep","Neetu Mandavi","Deepika Bhanjdev","Priyanka baghel","Nirmla Thakur",
-        "Shivani Yadav","Pratibha Mark dayalu","Rambati Wek","Rashmi wacham","Kunti Pandey","Renuka Jawwa",
-        "Shushmita Totapalli","Sanjna Neelam","Shivani Kashyap","Indravati  Koreti","Sumita Yadav",
-        "Shraddha sahu","Suman Poym","Sanjana Kawasi","Savesh Pradhan","Sariyam Rina","Karina Kashyap",
-        "Raina badaik","Radha sharma","Vaishali Acharya","Roshni Netam","Pooja Markam","Nikita Telam",
-        "Kavita Thakur","Ranjana Oyami","Rita Mudami","Salita Lekami","Sakshi Nagesh","Gayatri Dhankar",
-        "Elishiba Mandavi","Ratri Patel","Subati Mandavi","Bindiya Korram","Kumli Kashyap","Sejal Burka",
-        "Chandni Nag","Jyoti Bhvani","Aarti Chand"
+        "Divya sunarkar","Gungun Goswami","Prerna Atami","Jyoti Karmkar",
+        "Kamini Sethiya","Kasak raut","Roochi Patel","Komal baghel",
+        "Lachhan Rana","Bharti vishwakarama","Neetu kuldeep","Neetu Mandavi","Deepika Bhanjdev","Priyanka baghel","Nirmla Thakur",
+        "Shivani Yadav","Pratibha Mark dayalu","Kunti Pandey","Shushmita Totapalli","Sanjna Neelam","Shivani Kashyap",
+        "Sumita Yadav","Shraddha sahu","Sanjana Kawasi","Savesh Pradhan","Vaishali Acharya",
+        "Roshni Netam","Nikita Telam","Rita Mudami","Salita Lekami","Sakshi Nagesh",
+       "Subati Mandavi","Bindiya Korram","Kumli Kashyap","Jyoti Bhvani","Aarti Chand"
     ]
 
     # Load custom data if exists
@@ -63,9 +59,24 @@ def main():
 
     # Fixed room assignments
     fixed_assignments = {
-        "78": ["Jyoti Karmkar"],
-        "72": ["Pratibha Mark dayalu", "Akanksha Dewangan"],
-        "55": ["Gungun Goswami"]
+        "11": ["Rudra"],
+        "10": ["Gungun Goswami"],
+        "38": ["Kamini Sethiya"],
+        "72":["Subati Mandavi" ],
+        "40":["Joti Bhvani"],
+        "75":["Aanchal sahu", "Prathibha Mark dayalu"],
+        "46" : ["sushmita Totapalli", "anju sori"],
+        "8": ["Divya sunarkar"],
+        "9":["indu nayak"],
+        "75": ["Sanjna Neelam", "Shivani Yadav"],
+        "76":["Avantika Lambadi"],
+        "69":["Asmati Markam", "sumita Yadav"],
+        "32":["artichand", "ankita nag"],
+        "31":["Anjali Morla"],
+        "77":["Sakshi Nagesh"],
+        "6":["sanjana Neelam"],
+        "42":["Bindya Korram", "savesh Pradhan"],
+         
     }
 
     # Remove fixed students from random pool

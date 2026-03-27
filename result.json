@@ -1,54 +1,39 @@
 {
-    "2": [
-        "Sukhlal",
-        "Laxman",
-        "Narendra",
-        "Gango",
-        "Sushil",
+    "1": [
+        "Kartik kaka",
         "Geetesh",
-        "Deepak Thakur",
-        "Karthik kaka",
-        "Manoj mandavi"
-    ],
-    "4": [
-        "Mohan",
-        "Ramlal",
-        "Aashish Kashyap",
-        "Sabindar",
-        "Himanshu",
-        "Aashish markam",
-        "Rahul",
+        "Ashok",
+        "sanath ram",
         "Lekesh",
-        "Parveen"
+        "Sudeshwar"
+    ],
+    "2": [
+        "Balkrishna",
+        "Rahul",
+        "Sukhlal",
+        "RoopSingh",
+        "Deepak",
+        "Sagar bhaskar"
     ],
     "3": [
-        "Imran",
-        "Deepankar",
-        "Vivek",
-        "Badal",
-        "Dev Aashish",
-        "Yash",
-        "Balkrishna",
-        "Harshit"
+        "Dilip",
+        "Devashish",
+        "Aashish markam",
+        "Himanshu",
+        "Deepankar"
     ],
-    "1": [
-        "Goverdhan",
-        "Sudeshswor",
-        "Vikash",
-        "Umesh",
-        "Vikky",
+    "4": [
         "Sagar Kumar",
-        "Sagar bhaskar",
-        "Bheemsen"
+        "Narendra",
+        "Vikky",
+        "Ramlal",
+        "Yash"
     ],
     "5": [
-        "Harsh borla",
-        "Ashok",
-        "Dilip sori",
-        "Bhagat",
-        "Mahadev",
-        "Neeraj",
-        "Vinod",
-        "Dhurwa"
+        "Bheemsen",
+        "Sushil",
+        "Vivek",
+        "Laxman",
+        "Mohan"
     ]
 }
